@@ -66,7 +66,6 @@ class Attribut extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // Faire l'objet niveau
             attributs:[{
                 Force: 10,
                 Dexterité: 10,
@@ -74,12 +73,33 @@ class Attribut extends React.Component {
                 Constitution: 10,
                 Mémoire: 10,
                 Perception: 10
-            }]
-            
+            }],
         };
     }
 
+    createAttrTab(){
+
+        const attributs = this.state.attributs;
+        
+        let table = [];
+
+        // Outer loop to create parent
+        for (let i = 0; i < attributs.length; i++) {
+        let children = [];
+        //Inner loop to create children
+        for (let j = 0; j < 5; j++) {
+            children.push(<td>{`Column ${j + 1}`}</td>);
+        }
+        //Create the parent and add the children
+        table.push(<tr>{children}</tr>);
+        }
+        return table;
+
+    }
+
     render() {
+
+        
 
         return (
             <section className="container-fluid" id ="attribut">
@@ -95,12 +115,13 @@ class Attribut extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <AttrTab name="Force" />
+                                    {this.createAttrTab()}
+                                    {/* <AttrTab name="Force" />
                                     <AttrTab name="Dexterité" />
                                     <AttrTab name="Intelligence" />
                                     <AttrTab name="Constitution" />
                                     <AttrTab name="Mémoire" />
-                                    <AttrTab name="Perception" />
+                                    <AttrTab name="Perception" /> */}
                                 </tbody>
                             </table>
                         </div>
