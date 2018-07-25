@@ -20,6 +20,22 @@ function AttrTab(props){
 
 class Main extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            // Faire l'objet niveau
+            attributs:[{
+                Force: 10,
+                Dexterité: 10,
+                Intelligence: 10,
+                Constitution: 10,
+                Mémoire: 10,
+                Perception: 10
+            }]
+            
+        };
+    }
+
     render() {
         return (
             <main>
