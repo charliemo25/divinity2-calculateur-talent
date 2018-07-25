@@ -4,20 +4,6 @@ import './css/bootstrap.min.css';
 import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 
-function AttrTab(props){
-    return (
-        <tr>
-            <th scope="row">{props.name}</th>
-            <td>10</td>
-            <td>
-                <button type="button" className="btn btn-primary" >+</button>
-                <button type="button" className="btn btn-primary">-</button>
-            </td>
-        </tr>
-    );
-}
-
-
 class Main extends React.Component {
 
     render() {
@@ -66,14 +52,14 @@ class Attribut extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            attributs:[{
+            attributs:{
                 Force: 10,
                 Dexterité: 10,
                 Intelligence: 10,
                 Constitution: 10,
                 Mémoire: 10,
-                Perception: 10
-            }],
+                Perception: 10,
+            },
         };
     }
 
@@ -83,16 +69,31 @@ class Attribut extends React.Component {
         
         let table = [];
 
-        // Outer loop to create parent
-        for (let i = 0; i < attributs.length; i++) {
-        let children = [];
-        //Inner loop to create children
-        for (let j = 0; j < 5; j++) {
-            children.push(<td>{`Column ${j + 1}`}</td>);
+        //Parcours de l'objet attributs
+        for (const nom of Object.keys(attributs)) {
+            
+            console.log(nom, attributs[nom]);
+
+            let children = [];
+
+            //Nom de l'attribut
+            children.push(
+                <th scope="row">{nom}</th>
+            );
+
+            //valeur de l'attribut
+            children.push(
+                <td scope="row">
+                    {attributs[nom]}
+                    <button type="button" className="btn btn-primary" >+</button>
+                    <button type="button" className="btn btn-primary">-</button>
+                </td>
+            );
+
+            table.push(<tr>{children}</tr>);
+
         }
-        //Create the parent and add the children
-        table.push(<tr>{children}</tr>);
-        }
+
         return table;
 
     }
@@ -111,17 +112,10 @@ class Attribut extends React.Component {
                                     <tr>
                                         <th scope="col">Attribut</th>
                                         <th scope="col">Points</th>
-                                        <th scope="col">Ajouter/Retirer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {this.createAttrTab()}
-                                    {/* <AttrTab name="Force" />
-                                    <AttrTab name="Dexterité" />
-                                    <AttrTab name="Intelligence" />
-                                    <AttrTab name="Constitution" />
-                                    <AttrTab name="Mémoire" />
-                                    <AttrTab name="Perception" /> */}
                                 </tbody>
                             </table>
                         </div>
