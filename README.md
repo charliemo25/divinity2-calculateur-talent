@@ -7,6 +7,6 @@ J'initie ce projet avec pour objectif d'apprendre à utiliser la librairie javas
 ## Les techs utilisées:
 
 + HTML5, CSS3
-+ [Bootstrap](https://getbootstrap.com)
++ [Bootstrap4](https://getbootstrap.com)
 + [React](https://reactjs.org/)
 
