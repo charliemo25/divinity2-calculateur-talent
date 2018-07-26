@@ -68,32 +68,37 @@ class Attribut extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            attributs:{
-                Force: 10,
-                Dexterité: 10,
-                Intelligence: 10,
-                Constitution: 10,
-                Mémoire: 10,
-                Perception: 10,
-            },
+            Force: 10,
+            Dexterité: 10,
+            Intelligence: 10,
+            Constitution: 10,
+            Mémoire: 10,
+            Perception: 10,
         };
     }
 
-    handleClick(operator){
-        console.log('this is:', operator);
+    handleClick(operator, attr){
+
+        if(operator === "+") {
+            // On incrémente l'attribut(Force, Dexterité...)
+            this.setState({ [attr]: this.state[attr] + 1 });
+        }
+
+        if(operator === "-") {
+            // On decrémente l'attribut(Force, Dexterité...)
+            this.setState({ [attr]: this.state[attr] - 1 });
+        }
 
     }
 
     createAttrTab(){
 
-        const attributs = this.state.attributs;
+        const attributs = this.state;
         
         let table = [];
 
         //Parcours de l'objet attributs
         for (const nom of Object.keys(attributs)) {
-            
-            console.log(nom, attributs[nom]);
 
             let children = [];
 
@@ -106,8 +111,8 @@ class Attribut extends React.Component {
             children.push(
                 <td>
                     {attributs[nom]}
-                    <button type="button" className="btn btn-primary " onClick={(e) => this.handleClick("+",e)} >+</button>
-                    <button type="button" className="btn btn-primary " onClick={(e) => this.handleClick("-",e)}>-</button>
+                    <button type="button" className="btn btn-primary " onClick={() => this.handleClick("+", nom)} >+</button>
+                    <button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>
                 </td>
             );
 
@@ -119,10 +124,7 @@ class Attribut extends React.Component {
 
     }
 
-    render() {
-
-        
-
+    render() {       
         return (
             <tbody>
                 {this.createAttrTab()}
