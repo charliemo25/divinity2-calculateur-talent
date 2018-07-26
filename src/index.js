@@ -21,7 +21,23 @@ class Main extends React.Component {
                 <Niveau />
 
                 {/* Attribut */}
-                <Attribut />
+                <section className="container-fluid" id ="attribut">
+                <div className="container">
+                    <div className="row text-center">
+                        <div className="col-5">
+                            <table className="table" id="tab-attr">
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col">Attribut</th>
+                                        <th scope="col">Points</th>
+                                    </tr>
+                                </thead>
+                                    <Attribut />
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
                 
             </main>
         );
@@ -63,6 +79,11 @@ class Attribut extends React.Component {
         };
     }
 
+    handleClick(operator){
+        console.log('this is:', operator);
+
+    }
+
     createAttrTab(){
 
         const attributs = this.state.attributs;
@@ -83,10 +104,10 @@ class Attribut extends React.Component {
 
             //valeur de l'attribut
             children.push(
-                <td scope="row">
+                <td>
                     {attributs[nom]}
-                    <button type="button" className="btn btn-primary" >+</button>
-                    <button type="button" className="btn btn-primary">-</button>
+                    <button type="button" className="btn btn-primary " onClick={(e) => this.handleClick("+",e)} >+</button>
+                    <button type="button" className="btn btn-primary " onClick={(e) => this.handleClick("-",e)}>-</button>
                 </td>
             );
 
@@ -103,25 +124,9 @@ class Attribut extends React.Component {
         
 
         return (
-            <section className="container-fluid" id ="attribut">
-                <div className="container">
-                    <div className="row text-center">
-                        <div className="col-5">
-                            <table className="table" id="tab-attr">
-                                <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col">Attribut</th>
-                                        <th scope="col">Points</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.createAttrTab()}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <tbody>
+                {this.createAttrTab()}
+            </tbody>
         );
     }
 }
