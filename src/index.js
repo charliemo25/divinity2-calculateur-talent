@@ -116,35 +116,20 @@ class Attribut extends React.Component {
         }
 
     }
-    
+
     render() {   
-        
         const attributs = this.state;
-        
-        const table = [];
 
-        //Parcours de l'objet attributs
-        for (const nom of Object.keys(attributs)) {
-
-            let children = [];
-
-            //Nom de l'attribut
-            children.push(
+        const table = Object.keys(attributs).map((nom) =>
+            <tr>
                 <th scope="row">{nom}</th>
-            );
-
-            //valeur de l'attribut
-            children.push(
                 <td>
                     {attributs[nom]}
                     <button type="button" className="btn btn-primary " onClick={() => this.handleClick("+", nom)} >+</button>
                     <button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>
                 </td>
-            );
-
-            table.push(<tr>{children}</tr>);
-
-        }
+            </tr>       
+        );
 
         return (
             <tbody>
