@@ -4,7 +4,7 @@ import './css/bootstrap.min.css';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-function Niveau(props){
+function Niveau(){
     return (
         <div className="row">
             <div className="col-5">
@@ -18,8 +18,8 @@ function Niveau(props){
 }
 
 class Main extends React.Component {
-
     render() {
+
         return (
             <main>
                 {/* Header */}
@@ -124,14 +124,16 @@ class Attribut extends React.Component {
         //Object.keys permet de manipuler attributs comme un tableau
         //map génère un tableau pour chaque clefs contenu dans attributs
         const table = Object.keys(attributs).map((nom) =>
-            <tr>
+            <tr key={nom} >
                 <th scope="row">{nom}</th>
                 <td>
                     {attributs[nom]}    
                 </td>
                 <td>
                     <button type="button" className="btn btn-primary " onClick={() => this.handleClick("+", nom)} >+</button>
-                    { attributs[nom] > 10 ? (<button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>) : null}
+                    { attributs[nom] > 10 ? (<button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>) :
+                      (<button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)} disabled>-</button>)
+                    }
                 </td>
             </tr>       
         );
