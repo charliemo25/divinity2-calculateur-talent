@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/bootstrap.min.css';
 import './index.css';
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
 function Niveau(props){
     return (
@@ -47,6 +47,7 @@ class Main extends React.Component {
                                     <tr>
                                         <th scope="col">Attribut</th>
                                         <th scope="col">Points</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                     <Attribut />
@@ -120,13 +121,17 @@ class Attribut extends React.Component {
     render() {   
         const attributs = this.state;
 
+        //Object.keys permet de manipuler attributs comme un tableau
+        //map génère un tableau pour chaque clefs contenu dans attributs
         const table = Object.keys(attributs).map((nom) =>
             <tr>
                 <th scope="row">{nom}</th>
                 <td>
-                    {attributs[nom]}
+                    {attributs[nom]}    
+                </td>
+                <td>
                     <button type="button" className="btn btn-primary " onClick={() => this.handleClick("+", nom)} >+</button>
-                    <button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>
+                    { attributs[nom] > 10 ? (<button type="button" className="btn btn-primary " onClick={() => this.handleClick("-", nom)}>-</button>) : null}
                 </td>
             </tr>       
         );
@@ -141,4 +146,4 @@ class Attribut extends React.Component {
 
 
 ReactDOM.render(<Main />, document.getElementById('root'));
-// registerServiceWorker();
+registerServiceWorker();
