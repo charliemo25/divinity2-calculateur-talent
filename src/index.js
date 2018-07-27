@@ -116,12 +116,12 @@ class Attribut extends React.Component {
         }
 
     }
-
-    createAttrTab(){
-
+    
+    render() {   
+        
         const attributs = this.state;
         
-        let table = [];
+        const table = [];
 
         //Parcours de l'objet attributs
         for (const nom of Object.keys(attributs)) {
@@ -146,14 +146,9 @@ class Attribut extends React.Component {
 
         }
 
-        return table;
-
-    }
-
-    render() {       
         return (
             <tbody>
-                {this.createAttrTab()}
+                {table}
             </tbody>
         );
     }
