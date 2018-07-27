@@ -4,6 +4,19 @@ import './css/bootstrap.min.css';
 import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 
+function Niveau(props){
+    return (
+        <div className="row">
+            <div className="col-5">
+                <p>Niveau requis: 1</p>
+            </div>
+            <div className="col-5 offset-2">
+                <p>Points restant: 3</p>
+            </div>
+        </div>
+    );
+}
+
 class Main extends React.Component {
 
     render() {
@@ -18,7 +31,11 @@ class Main extends React.Component {
                 </header>
 
                 {/* Affichage niveau */}
-                <Niveau />
+                <section className="container-fluid" id="niveau">
+                    <div className="container">
+                        <Niveau />
+                    </div>
+                </section>
 
                 {/* Attribut */}
                 <section className="container-fluid" id ="attribut">
@@ -44,24 +61,33 @@ class Main extends React.Component {
     }
 }
 
-class Niveau extends React.Component {
-    render() {
-        return (
-            <section className="container-fluid" id="niveau">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-5">
-                            <p>Niveau requis: 1</p>
-                        </div>
-                        <div className="col-5 offset-2">
-                            <p>Points restant: 0</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-}
+// class Niveau extends React.Component {
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             Niveau: 1,
+//             Point: 3,
+//         };
+//     }
+
+//     render() {
+//         return (
+//             <section className="container-fluid" id="niveau">
+//                 <div className="container">
+//                     <div className="row">
+//                         <div className="col-5">
+//                             <p>Niveau requis: 1</p>
+//                         </div>
+//                         <div className="col-5 offset-2">
+//                             <p>Points restant: 3</p>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </section>
+//         );
+//     }
+// }
 
 class Attribut extends React.Component {
 
